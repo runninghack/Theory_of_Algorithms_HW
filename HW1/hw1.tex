@@ -1,14 +1,16 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-%\usepackage{amssymb}
 \usepackage{amsmath}
-%\usepackage{amsthm}
+\usepackage{algorithmicx}
 \usepackage{algorithm}
-\usepackage{algorithmic}
-%\usepackage{xcolor}
-%\floatname{algorithm}{Procedure}
-\renewcommand{\algorithmicrequire}{\textbf{Input:}}
-\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{algpseudocode}
+\usepackage{indentfirst}
+
+\algnewcommand\algorithmicinput{\textbf{INPUT:}}
+\algnewcommand\INPUT{\item[\algorithmicinput]}
+\algnewcommand\algorithmicoutput{\textbf{OUTPUT:}}
+\algnewcommand\OUTPUT{\item[\algorithmicoutput]}
+
 
 
 \title{Homework 1}
@@ -23,56 +25,56 @@
 \begin{algorithm}
 \caption{Finding common elements in two sorted lists}
 \begin{algorithmic}[1]
-\REQUIRE ~~\
+\INPUT\\
 An array $A_1[0..m-1]$ for m sorted numbers;\\
-Another sorted array $A_2[0..n-1]$ with n numbers;\\
-\ENSURE ~~\
-Ensemble of classifiers on the current batch, $A_c$; \\
-\STATE $ i \leftarrow 0 $
-\WHILE {$ (i < m) and (j < n) $}
-\IF {$A_1[i] == A_2[i]$}
-\STATE $print A[i]$
-\STATE $i \leftarrow i + 1$
-\STATE $j \leftarrow j + 1$
-\ELSIF{$A_1[i] > A_2[i] $}
-\STATE $j \leftarrow j + 1$
-\ELSE
-\STATE $i \leftarrow i +1$
-\ENDIF
-\ENDWHILE
-% \RETURN $l_c$;
+Another sorted array $A_2[0..n-1]$ with n numbers;
+\OUTPUT ~~\
+The list of common elements in two sorted lists $C\{1,....n\}$;
+\State $ i \leftarrow 0 $
+\While {$ (i < m) and (j < n) $}
+\If {$A_1[i] == A_2[i]$}
+\State Add $A[i]$ to the list C
+\State $i \leftarrow i + 1$
+\State $j \leftarrow j + 1$
+\ElsIf{$A_1[i] > A_2[i] $}
+\State $j \leftarrow j + 1$
+\Else
+\State $i \leftarrow i +1$
+\EndIf
+\EndWhile
+\State \Return C
 \end{algorithmic}
 \end{algorithm}
 
 \section{Exercises 1.1 - 6}
 
-\textbf{a.}
+\subsection*{a.}
 
 m = 31415, n = 14142
 
-Step 1: $r = 31415 \mod 14142 = 3131, m \leftarrow 14142, n \leftarrow 3131 $
+Step 1: $r = (31415 \mod 14142) = 3131, m \leftarrow 14142, n \leftarrow 3131 $
 
-Step 2: $r = 14142 \mod 3131 = 1618, m \leftarrow 3131, n \leftarrow 1618 $
+Step 2: $r = (14142 \mod 3131) = 1618, m \leftarrow 3131, n \leftarrow 1618 $
 
-Step 3: $r = 3131 \mod 1618 = 1513, m \leftarrow 1618, n \leftarrow 1513 $
+Step 3: $r = (3131 \mod 1618) = 1513, m \leftarrow 1618, n \leftarrow 1513 $
 
-Step 4: $r = 1618 \mod 1513 = 105, m \leftarrow 1513, n \leftarrow 105 $
+Step 4: $r = (1618 \mod 1513) = 105, m \leftarrow 1513, n \leftarrow 105 $
 
-Step 5: $r = 1513 \mod 10 5= 43, m \leftarrow 105, n \leftarrow 43 $
+Step 5: $r = (1513 \mod 105)= 43, m \leftarrow 105, n \leftarrow 43 $
 
-Step 6: $r = 105 \mod 43 = 19, m \leftarrow 43, n \leftarrow 19 $
+Step 6: $r = (105 \mod 43) = 19, m \leftarrow 43, n \leftarrow 19 $
 
-Step 7: $r = 43 \mod 19 = 5, m \leftarrow 19, n \leftarrow 5 $
+Step 7: $r = (43 \mod 19) = 5, m \leftarrow 19, n \leftarrow 5 $
 
-Step 8: $r = 19 \mod 5 = 4, m \leftarrow 5, n \leftarrow 4 $
+Step 8: $r = (19 \mod 5) = 4, m \leftarrow 5, n \leftarrow 4 $
 
-Step 9: $r = 5 \mod 4 = 1, m \leftarrow 4, n \leftarrow 1 $
+Step 9: $r = (5 \mod 4) = 1, m \leftarrow 4, n \leftarrow 1 $
 
-Step 10: $r = 4 \mod 1 = 0, m \leftarrow 1, n \leftarrow 0 $
+Step 10: $r = (4 \mod 1) = 0, m \leftarrow 1, n \leftarrow 0 $
 
 Step 11: return 1
 
-\textbf{b.}
+\subsection*{b.}
 
 Using consecutive integer checking algorithm, every time the value of t is decreased, it takes two divisions. There are 28284 divisions in total.
 
@@ -82,34 +84,123 @@ Euclid's algorithm is 28284/10 = 2828.4 times faster in terms of divisions.
 
 \section{Exercises 1.1 - 7}
 
-Prove the equality gcd(m, n) = gcd(n, m mod n) for every pair of positive integers m and n.
+k, r are integers. Assume $ r= (m \mod n)$. m can be expressed as $m = k*n +r$
+
+Assume d is a common divisor of m and n: $d |m$ , $d|n$. As $r = m - k*n$, $d | r$, d is also a common divisor of n and r.
+
+Assume d is a common divisor of n and r: $d |n$ , $d|r$. As $m = k*n +r $, $d | m$, d is also a common divisor of m and n.
+
+Now $\{m,n\}$ and $\{n,r\}$ have the same common divisors. Thus, $gcd(m,n) = gcd(n, m \mod n)$
+
+
 
 \section{Exercises 1.2 - 4}
 
 \begin{algorithm}
 \caption{finding real roots}
 \begin{algorithmic}[1]
-\REQUIRE ~~\
+\Require ~~\
 arbitrary real coefficients a, b, and c
-\STATE $ d \leftarrow b^2-4*a*c  $
-\IF {$d<0$}
-\RETURN $false$
-\ELSIF{$d = 0$}
-\STATE $ x_1 \leftarrow (-b + sqrt(d))/(2*a)$
-\RETURN $x_1$
-\ELSIF{$d>0$}
-\STATE $x_1 \leftarrow (-b + sqrt(d))/(2*a)$
-\STATE $x_2 \leftarrow (-b - sqrt(d))/(2*a)$
-\RETURN $ x_1, x_2$
-\ENDIF
+\State $ d \leftarrow b^2-4*a*c  $
+\If {$d<0$}
+\Return $false$
+\ElsIf{$d == 0$}
+\State $ x_1 \leftarrow (-b + sqrt(d))/(2*a)$
+\State \Return $x_1$
+\ElsIf{$d>0$}
+\State $x_1 \leftarrow (-b + sqrt(d))/(2*a)$
+\State $x_2 \leftarrow (-b - sqrt(d))/(2*a)$
+\State \Return $ x_1, x_2$
+\EndIf
 \end{algorithmic}
 \end{algorithm}
 
 \section{Exercises 1.2 - 9}
 
+\begin{algorithm}[H]
+ \caption{MinDistance}
+   \begin{algorithmic}[1]
+     \INPUT Array A[0..n-1] of numbers
+     \OUTPUT Minimum distance between two of its elements
+     \State $A \leftarrow Merge(A)$
+     \State $ dmin \leftarrow \infty$
+     \For {$i \leftarrow 0$ to $n-2$}
+     \If {$|A[i] - A[i+1]|  < dmin$}
+     \State $dmin \leftarrow |A[i] - A[i+1]|$
+     \EndIf
+     \EndFor
+     \State \Return dim
+   \end{algorithmic}
+\end{algorithm}
+
+The algorithm of merge sort describes as follow:
+
+\begin{algorithm}[H]
+ \caption{Merge Sort}
+   \begin{algorithmic}[1]
+     \INPUT An array $A[0..n-1]$ of orderable elements
+     \OUTPUT Array $A[0..n-1]$ sorted in nondecreasing order
+    \Function{Merge}{$A,p,q,r$}
+      \State ${n_1} = q - p + 1$
+      \State ${n_2} = r - q$
+      \State Let $L[1 \ldots {n_1} + 1]$ and $R[1 \ldots {n_2} + 1]$ be new arrays
+      \For {$i \leftarrow 1$ to ${n_1}$}
+          \State $L[i] = A[p + i - 1]$
+      \EndFor
+      \For{$j = 1$ to ${n_2}$}
+          \State $R[i] = A[q + j]$
+      \EndFor
+      \State $L[{n_1} + 1] =  \infty $
+      \State $R[{n_2} + 1] =  \infty $
+      \State $i = 1$
+      \State $j = 1$
+      \For{$k = p$ to $r$}
+          \If {$L[i] < R[j]$}
+              \State $A[k] = L[i]$
+              \State $i = i + 1$
+          \ElsIf {$L[i] > R[j]$}
+              \State $A[k] = R[j]$
+              \State $j = j + 1$
+          \Else
+              \State $A[k] = - \infty$
+              \State $j = j + 1$
+          \EndIf
+      \EndFor
+      \EndFunction
+      \\
+      \Function{Mergesort}{$A$}
+      \If {$n == 1$}
+      \Return A
+      \EndIf
+      \EndFunction
+
+   \end{algorithmic}
+\end{algorithm}
 
 \section{Exercises 1.3 - 1}
 
+\subsection*{a.}
 
+\begin{itemize}
+\item outer loop 1: $Count[0] += 1, Count[2] += 1, Count[3] += 1, Count[0] += 1, Count[0] += 1$
+\item outer loop 2: $Count[2] += 1, Count[3] += 1, Count[1] += 1, Count[5] += 1$
+\item outer loop 3: $Count[3] += 1, Count[2] += 1, Count[2] += 1$
+\item outer loop 4: $Count[3] += 1, Count[3] += 1$
+\item outer loop 5: $Count[5] += 1$
+\end{itemize}
+
+For now, $Count[0] =3, Count[1] =1, Count[2] =4, Count[3] =5, Count[4] =0, Count[5] =2$
+
+Thus, $S[3] = 60, S[1] = 35, S[4] = 81 , S[5] = 98 , S[0] = 14 , S[2] = 47$
+
+Result: $S =[14,35,47,60,81,98]$
+
+\subsection*{b.}
+
+It's not stable.
+
+\subsection*{c.}
+
+It's not an in-place algorithm as it uses extra storage space in the array Count.
 
 \end{document}
