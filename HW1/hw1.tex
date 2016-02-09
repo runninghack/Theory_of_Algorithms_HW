@@ -1,12 +1,11 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amssymb}
+%\usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage{amsthm}
+%\usepackage{amsthm}
 \usepackage{algorithm}
-
 \usepackage{algorithmic}
-\usepackage{xcolor}
+%\usepackage{xcolor}
 %\floatname{algorithm}{Procedure}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
@@ -29,7 +28,7 @@ An array $A_1[0..m-1]$ for m sorted numbers;\\
 Another sorted array $A_2[0..n-1]$ with n numbers;\\
 \ENSURE ~~\
 Ensemble of classifiers on the current batch, $A_c$; \\
-\STATE $ i \Leftarrow 0 $
+\STATE $ i \leftarrow 0 $
 \WHILE {$ (i < m) and (j < n) $}
 \IF {$A_1[i] == A_2[i]$}
 \STATE $print A[i]$
