@@ -29,7 +29,7 @@
 An array $A_1[0..m-1]$ for m sorted numbers;\\
 Another sorted array $A_2[0..n-1]$ with n numbers;
 \OUTPUT ~~\
-The list of common elements in two sorted lists $C\{1,....n\}$;
+The list of common elements in two sorted lists $C$;
 \State $ i \leftarrow 0 $
 \While {$ (i < m) and (j < n) $}
 \If {$A_1[i] == A_2[i]$}
@@ -42,7 +42,7 @@ The list of common elements in two sorted lists $C\{1,....n\}$;
 \State $i \leftarrow i +1$
 \EndIf
 \EndWhile
-\State \Return C
+\State \Return $C$
 \end{algorithmic}
 \end{algorithm}
 
@@ -92,18 +92,15 @@ Assume d is a common divisor of n and r: $d |n$ , $d|r$. As $m = k*n +r $, $d | 
 
 Now $\{m,n\}$ and $\{n,r\}$ have the same common divisors. Thus, $gcd(m,n) = gcd(n, m \mod n)$
 
-
-
 \section{Exercises 1.2 - 4}
 
 \begin{algorithm}
 \caption{finding real roots}
 \begin{algorithmic}[1]
-\Require ~~\
-arbitrary real coefficients a, b, and c
+\INPUT arbitrary real coefficients a, b, and c
 \State $ d \leftarrow b^2-4*a*c  $
 \If {$d<0$}
-\Return $false$
+\State \Return $false$
 \ElsIf{$d == 0$}
 \State $ x_1 \leftarrow (-b + sqrt(d))/(2*a)$
 \State \Return $x_1$
@@ -129,7 +126,7 @@ arbitrary real coefficients a, b, and c
      \State $dmin \leftarrow |A[i] - A[i+1]|$
      \EndIf
      \EndFor
-     \State \Return dim
+     \State \Return $dmin$
    \end{algorithmic}
 \end{algorithm}
 
