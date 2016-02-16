@@ -25,28 +25,128 @@
 \subsection{a.}
 
 \begin{align*}
-1+ 3 + 5 + 7 + . . . + 999 &= \sum_{i=1}^{500} (2*i -1) \\
+1+ 3 + 5 + 7 + . . . + 999 &= \frac{(1+999)500}{2}\\
+&= 250000
 \end{align*}
 
 \subsection{b.}
 
-\subsection{b.}
+\begin{align*}
+2 + 4 + 8 + 16 + . . . + 1024 &= \frac{2^{10+1}-1}{2-1} -1\\
+&= 2047 - 1\\
+&= 2046
+\end{align*}
 
 \subsection{c.}
 
+
+\begin{align*}
+\sum_{i=3}^{n+1}1 &= (n + 1) - 3 + 1 \\
+&=  n-1
+\end{align*}
+
+
 \subsection{d.}
+
+\begin{align*}
+\sum_{i=3}^{n+1}i &=  3 + 4 + ... n+1\\
+&=  (\sum_{i=1}^{n+1}i) - 1 -2\\
+&=  \frac{(n+1)(n+2)}{2} -3\\
+&=  \frac{n^2+3n-4}{2}
+\end{align*}
 
 \subsection{e.}
 
+\begin{align*}
+\sum_{i=0}^{n-1}i(i+1) &=  \sum_{i=0}^{n-1}i^2 + \sum_{i=0}^{n-1}i\\
+&= \frac{(n-1)n(2n-1)}{6} + \frac{(n-1)n}{2} \\
+&= \frac{(n^2-1)n}{3}
+\end{align*}
+
 \section{Exercises 2.3 - 2}
+
+\subsection{a.}
+
+\begin{align*}
+\sum_{0}^{n-1}(i^2+1)^2&= \sum_{0}^{n-1}i^4 + 2\sum_{0}^{n-1}i^2 + \sum_{0}^{n-1}1 \\
+&= \frac{1}{5}(n-1)^5+\frac{1}{3}(n-1)^3+ n-1 \\
+&\approx \frac{1}{5}n^5  \\
+&\in \Theta(n^5) \\
+\end{align*}
+
+\subsection{b.}
+
+\begin{align*}
+\sum_{i=2}^{n-1}\ln i^2&= 2\sum_{i=1}^{n-1}\ln i - 2\ln 1\\
+&= 2(n-1)\ln(n-1)\\
+&\approx 2n\ln n  \\
+& \in \Theta (n \ln n)
+\end{align*}
+
+\subsection{c.}
+
+\begin{align*}
+\sum_{i=1}^{n}(i+1)2^{i-1}&= \frac{1}{4}\sum_{i=1}^{n}(i+1)2^{i+1}\\
+&= \frac{1}{4}\sum_{k=0}^{n+1}k2^k\\
+&= \frac{1}{4}\sum_{k=1}^{n+1}k2^k\\
+&= \frac{n}{4}2^{n+2} +2 \\
+& \approx \frac{n}{16}2^n \\
+& \in\Theta (n2^n)
+\end{align*}
+
+\subsection{d.}
+
+\begin{align*}
+\sum_{i=0}^{n-1}\sum_{j=0}^{i-1}(i+j)&= \sum_{i=0}^{n-1}[i(i-1) + \sum_{j=0}^{i-1}j] \\
+&= \sum_{i=0}^{n-1}[i^2 -i + \frac{(i-1)i}{2}]\\
+&= \frac{3}{2}\sum_{i=0}^{n-1}(i^2 -i)\\
+&= \frac{3}{2}\sum_{i=0}^{n-1}i^2 - \frac{3}{2}\sum_{i=0}^{n-1}i\\
+&= \frac{3}{2}\frac{(n-1)n(2n-1)}{6} - \frac{3}{2}\frac{n(n-1)}{2}\\
+&\approx \frac{n^3}{2}\\
+&\in \Theta(n^3)
+\end{align*}
 
 \section{Exercises 2.3 - 3}
 
+Let us denote $D(n)$ the number of divisions, $M(n)$ the number of multiplications, $A(n)$ the number of additions and $S(n)$ the number ofsubtractions.
+
+For $\frac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}$ where
+$\overline{x} = \frac{\sum_{i=1}^{n}x_i}{n}$,
+$D(n)=2, M(n) = n, A(n) + S(n) = [(n-1) +(n-1)] + (n + 1) = 3n-1$.
+
+For $\frac{\sum_{i=1}^{n}x_i^2 - (\sum_{i=1}^nx_i)^2/n)}{n-1}$,
+$D(n)=2, M(n) = n + 1, A(n) + S(n) =[(n- 1) + (n- 1)] + 2 = 2n$
 
 \section{Exercises 2.3 - 6}
 
+a. If the input is a symmetric matrix, the algorithm returns true. If the matrix is not symmetric, the algorthm returns false.
+
+b. The comparisons: $if A[i, j ] \ne A[j, i]$
+
+c.
+
+\begin{align*}
+C(n) &= \sum_{i=0}^{n-2}\sum_{j=i+1}^{n-1}1\\
+&= \sum_{i=0}^{n-2}[(n-1)-(i+1)+1]\\
+&= \sum_{i=1}^{n-2}(n-1-i)\\
+&= (n-1)(n-1) - \sum_{i=0}^{n-2}i\\
+&= (n-1)^2 - \frac{(n-2)(n-1)}{2}\\
+&= \frac{n(n-1)}{2}
+\end{align*}
+
+d. $C(n)\in \Theta(n^2)$
+
+e. There are no better algorithms because any algorithms have to compare $\frac{n(n-1)}{2}$ times for this problem.
 
 \section{Exercises 2.3 - 9}
+
+\textbf{Basis}: For n = 1, the left-hand side of the equation is 1, and the right-hand side of the equation is $\frac{1(1+1)}{2} = 1$. Thus the statement is true for n = 1.
+
+\textbf{Inductive step}: Assume $\sum_{i=1}^{k}i = \frac{k(k+1)}{2}$ holds for some unspecified value of k. Then  $\sum_{i=1}^{n+1}i = (n+1) + \sum_{i=1}^{n}i = (n+1) + \frac{n(n+1)}{2} = \frac{(n+1)(n+2)}{2}$
+
+ Since both the basis and the inductive step have been performed, by mathematical induction, the statement $\sum_{i=1}^{n}i = \frac{n(n+1)}{2}$ holds for all natural numbers n. Q.E.D.
+
+
 
 
 \end{document}
