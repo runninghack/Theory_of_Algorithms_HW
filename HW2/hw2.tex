@@ -106,16 +106,18 @@
 &\in \Theta(n^3)
 \end{align*}
 
-\section{Exercises 2.3 - 3}
+\section{Exercises 2.3 - 4}
 
-Let us denote $D(n)$ the number of divisions, $M(n)$ the number of multiplications, $A(n)$ the number of additions and $S(n)$ the number ofsubtractions.
+a.$\sum_{i=1}^{n}i^2$
 
-For $\frac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}$ where
-$\overline{x} = \frac{\sum_{i=1}^{n}x_i}{n}$,
-$D(n)=2, M(n) = n, A(n) + S(n) = [(n-1) +(n-1)] + (n + 1) = 3n-1$.
+b.$S \leftarrow S+ i*i$
 
-For $\frac{\sum_{i=1}^{n}x_i^2 - (\sum_{i=1}^nx_i)^2/n)}{n-1}$,
-$D(n)=2, M(n) = n + 1, A(n) + S(n) =[(n- 1) + (n- 1)] + 2 = 2n$
+c.$C(n) = \sum_{i=1}^n1=n$
+
+d.$C(n) \in \Theta(n)$
+
+e.It is known that $\sum_{i=1}^{n}i^2 = \frac{n(n+1)(2n+1)}{6}$, so the algorithm can use this formula to compute the results directly.
+
 
 \section{Exercises 2.3 - 6}
 
