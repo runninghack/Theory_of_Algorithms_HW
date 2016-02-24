@@ -6,13 +6,21 @@
 \usepackage{algpseudocode}
 \usepackage{indentfirst}
 \usepackage{caption}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,fit}
+
+\tikzset{circarrow/.style={
+        *->,
+        shorten <=-2pt
+    }
+}
 
 \algnewcommand\algorithmicinput{\textbf{//Input:}}
 \algnewcommand\INPUT{\item[\algorithmicinput]}
 \algnewcommand\algorithmicoutput{\textbf{//Output:}}
 \algnewcommand\OUTPUT{\item[\algorithmicoutput]}
-
-
 
 \title{Homework 3}
 \author{Lei Zhang}
@@ -138,40 +146,52 @@ It is known that the standard bubble sort has quadratic performance in the worst
 
 \subsection{b.}
 
-\begin{center}
-\captionof{algorithm}{exhaustive-search algorithm}
-\begin{algorithmic}
-\INPUT
-Integer $n$
-\OUTPUT
-Array $A[0..n-1]$ sorted in nondecreasing order
-\State $numOfSwap \leftarrow 0$
-\For {$i \leftarrow 0$ to $n-2$}
-\For {$j \leftarrow 0$ to $n-2-i$}
-\If {$A[j+1] < A[j]$}
-\State $swap A[j] and A[j+1]$
-\State $numOfSwap += 1$
-\EndIf
-\EndFor
-\If {$numOfSwap == 0$}
-\State Break
-\EndIf
-\EndFor
-\end{algorithmic}
-\end{center}
+Step 1: Generate all permutations of 1 to $n^2$.
+
+Step 2: Fill in the numbers of permutations to matrices.
+
+Step 3: Test all the matrices if it's a magic square. It's a magic square only if each row, each column, and each main diagonal of the matrix has the same sum.
+
+Step 4: Output all the magic squares.
 
 \subsection{c.}
 
 
-\subsection{d.}
 
-\subsection{e.}
+\subsection{d.}
 
 \section{Exercises 3.5 - 1}
 
+\subsection{a.}
+
+Adjacency matrix:
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \cline{2-8}
+\cline{2-8}
+\multicolumn{1}{l}{} & A & B & C & D & E & F & G  \\ \hline
+ A &   0& 1 & 1 & 1 & 1 & 0 & 0   \\ \cline{2-8}
+ B &   1& 0 & 0 & 1 & 0 & 1 & 0   \\ \cline{2-8}
+ C &   1& 0 & 0 & 0 & 0 & 0 & 1   \\ \cline{2-8}
+ D &   1& 1 & 0 & 0 & 0 & 1 & 0   \\ \cline{2-8}
+ E &   1& 0 & 0 & 0 & 0 & 0 & 1   \\ \cline{2-8}
+ F &   0& 1 & 0 & 1 & 0 & 0 & 0   \\ \cline{2-8}
+ G &   0& 0 & 1 & 0 & 1 & 0 & 0   \\ \cline{2-8}
+\end{tabular}
+
+Adjacency lists:
+$\\$
+$a \rightarrow b \rightarrow c \rightarrow d \rightarrow e $\\
+$b \rightarrow a \rightarrow  d \rightarrow f $\\
+$c \rightarrow a \rightarrow g $\\
+$d \rightarrow a \rightarrow b \rightarrow f $\\
+$e \rightarrow a \rightarrow g $\\
+$f \rightarrow b \rightarrow d $\\
+$g \rightarrow c \rightarrow e $\\
+
+\subsection{b.}
+
+
+
 \section{Exercises 3.5 - 4}
-
-
-
 
 \end{document}
