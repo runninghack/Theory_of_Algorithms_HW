@@ -51,12 +51,12 @@ An boolean matrix $A[0..n-1,0..n-1]]$, where $n > 3$;
 \EndFor
 \For {$i \leftarrow 0$ to $n-1$}
 \If {$sumOfLine[i] == 2$}
-\State $countOf_2 += 1$
+\State $countOf_2 \leftarrow countOf_2 + 1$
 \EndIf
 \EndFor
 \For {$i \leftarrow 0$ to $n-1$}
 \If {$sumOfLine[i] == n-1$}
-\State $countOf_{nminus1} += 1$
+\State $countOf_{nminus1} \leftarrow countOf_{nminus1} + 1$
 \EndIf
 \EndFor
 \If {$countOf_2 == n-1$}
@@ -76,9 +76,43 @@ Time efficiency is $\Theta(n)$
 
 \section{Exercises 3.1 - 7}
 
+\subsection*{a.}
 
+\begin{center}
+\captionof{algorithm}{Identify the stack with fake coins}
+\begin{algorithmic}
+\INPUT
+n stacks of n coins, $C[0,..n-1]$
+\OUTPUT
+The number of the stack with face coins
+\For {$i \leftarrow  0$ to $n=1$}
+\If {$weight(C[i]) == 11$}
+\State \Return $i$
+\EndIf
+\EndFor
+\end{algorithmic}
+\end{center}
 
+The worst-case efficiency class is $O(n)$
 
+\subsection*{b.}
+
+It requires a minimum of 1 time of weighing. The algorithm is as follows.
+
+\begin{center}
+\captionof{algorithm}{Identify the stack with fake coins}
+\begin{algorithmic}
+\INPUT
+n stacks of n coins, $C[0,..n-1]$
+\OUTPUT
+The number of the stack with face coins
+\State $sumOfWeights \leftarrow 0$
+\For {$i \leftarrow  0$ to $n=1$}
+\State $sumOfWeights \leftarrow sumOfWeights + (i*weight(i))$
+\EndFor
+\State \Return $sumOfWeights - n*10$
+\end{algorithmic}
+\end{center}
 
 \section{Exercises 3.1 - 8}
 
@@ -104,11 +138,11 @@ Time efficiency is $\Theta(n)$
 
 \section{Exercises 3.1 - 12}
 
-\subsection{a.}
+\subsection*{a.}
 
 Assume the list was not sorted before a outer loop, at least one element must be greater than it's former element. If so, at least one exchange must be made. Thus, if bubble sort makes no exchages on its pass through a list, the list must be sorted.
 
-\subsection{b.}
+\subsection*{b.}
 
 \begin{center}
 \captionof{algorithm}{BubbleSort}
@@ -122,7 +156,7 @@ Array $A[0..n-1]$ sorted in nondecreasing order
 \For {$j \leftarrow 0$ to $n-2-i$}
 \If {$A[j+1] < A[j]$}
 \State $swap A[j] and A[j+1]$
-\State $numOfSwap += 1$
+\State $numOfSwap \leftarrow numOfSwap + 1$
 \EndIf
 \EndFor
 \If {$numOfSwap == 0$}
@@ -132,19 +166,19 @@ Array $A[0..n-1]$ sorted in nondecreasing order
 \end{algorithmic}
 \end{center}
 
-\subsection{c.}
+\subsection*{c.}
 
 It is known that the standard bubble sort has quadratic performance in the worst case. The worst case is to sort a array in increasing order. For this situation, bubble sort will exchage elements in every outer loop. The improvement won't get a change to take affect. Thus, worst-case efficiency of the improved version is still quadratic.
 
 \section{Exercises 3.4 - 10}
 
-\subsection{a.}
+\subsection*{a.}
 
 \begin{align*}
 \sum_{i=0}^{n^2}i = \frac{n^2(n^2+1)}{2}
 \end{align*}
 
-\subsection{b.}
+\subsection*{b.}
 
 Step 1: Generate all permutations of 1 to $n^2$.
 
@@ -154,15 +188,21 @@ Step 3: Test all the matrices if it's a magic square. It's a magic square only i
 
 Step 4: Output all the magic squares.
 
-\subsection{c.}
+\subsection*{c.}
 
+The standard way to generate magic squares is to follow some certain formulas, rather than generate all possible magic squares for a given order $n$. One formula normally can only generate one of the three types of magic squares, which are odd, doubly even (n divisible by four) and singly even (n even, but not divisible by four). For example, the Siamese method can only generate one magic square for a given odd order.
 
+\subsection*{d.}
 
-\subsection{d.}
+When using 4 as the order, the exhaustive search print nothing out for 1 minute. So 3 is the largest order the exhaustive search method can compute on my computer within 1 minite.
+
+The Siamese method can run about 12999 as the largest odd order in 1 minute.
+
+The python codes of the two algorithms are attached in the end of this homework.
 
 \section{Exercises 3.5 - 1}
 
-\subsection{a.}
+\subsection*{a.}
 
 Adjacency matrix:
 
@@ -188,9 +228,21 @@ $e \rightarrow a \rightarrow g $\\
 $f \rightarrow b \rightarrow d $\\
 $g \rightarrow c \rightarrow e $\\
 
-\subsection{b.}
+\subsection*{b.}
 
+\begin{tabular}{ |l| c r| }
+\hline
+ Node & Push Order & Pop Order \\ \hline
+ a& 1 & 7\\ \hline
+ b& 2 & 3\\ \hline
+ c& 5 & 6\\ \hline
+ d& 3 & 2\\ \hline
+ e& 7 & 4\\ \hline
+ f& 4 & 1\\ \hline
+ g& 6 & 5\\ \hline
+\end{tabular}
 
+\clearpage 
 
 \section{Exercises 3.5 - 4}
 
