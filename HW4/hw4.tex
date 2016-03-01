@@ -20,18 +20,135 @@
 
 \section{Exercises 4.3 - 4}
 
+\subsection*{a. }
+
+\textbf{For $n=2, A[1,2]$}: 
+
+[1,2], [2,1]\\
+
+\textbf{For $n=3, A[1,2,3]$}: 
+
+[1,2,3], [2,1,3], [3,1,2], [1,3,2], [2,3,1], [3,2,1]\\
+
+\textbf{For $n=4, A[1,2,3,4]$}: 
+
+[1,2,3,4], [2,1,3,4], [3,1,2,4],[1,3,2,4],[2,3,1,4],[3,2,1,4], [4,2,3,1], [2,4,3,1], [3,4,2,1], [4,3,2,1], [2,3,4,1],[3,2,4,1], [4,1,3,2], [1,4,3,2], [3,4,1,2], [1,3,4,2], [3,1,4,2], [4,1,2,3],[1,4,2,3], [2,4,1,3], [4,2,1,3],[1,2,4,3], [2,1,4,3]
+
+\subsection*{b. }
+
+\textbf{Basis}: For n = 1, the output of Heap's algorithm is [1], which are all permutations of [1]. Thus the statement is true for n =1. 
+
+\textbf{Inductive step}: Assume HeapPermute(n) generates all permutations of A[1..n] holds for some unspecified value of k. There are k + 1 loops in HeapPermute(k+1). For each loop, the additional number k+1 are added to all the possible positions in the permutations generated from  HeapPermute(k). At last, in total (k+1)! permutations are generated from HeapPermute(k+1). 
+
+Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all natural numbers n. Q.E.D.
+
+\subsection*{c. }
+
+Let C(n) be the number of $swap$ process.
+
+$C(n) = n(C(n-1)+1) when n >1$
+
+$C(1) = 0$
+
+$C(n) \in \Theta(n!)$
+
 \section{Exercises 4.3 - 7}
+
+\begin{center}
+\begin{algorithmic}
+\INPUT
+A positive integer, n
+\OUTPUT
+all $2^n$ bit strings of length n, A[0..n]
+\Function{BitStrings}{$n,A$}
+\If {$n = 0$}
+\State \textbf{write} A
+\EndIf
+\State $A[n] \leftarrow 0$
+\State $BitStrings(n-1,A)$
+\State $A[n] \leftarrow 0$
+\State $BitStrings(n-1,A)$
+\EndFunction
+\end{algorithmic}
+\end{center}
 
 \section{Exercises 4.2 - 1}
 
+\subsection*{a.}
 
+The order the vertices are popped off the stack: e, f, g, b, c, a, d
+
+Thus the sorted order is: d,a,c,b,g,f,e
+
+\subsection*{b.}
+
+This digraph is not a dag.
 
 \section{Exercises 4.2 - 9}
 
+\subsection*{a.}
+
+\begin{itemize}
+\item Step 1: The order the vertices are popped off the stack: 1f, 2g, 3b, 4a, (now empty), 5d, 6c, (now empty), 7h, 8e
+\item Step 2:\\ \\ \\ \\
+\item Step 3: The order vertices are pushed in the stack: e, h, c, (now empty), d, (now empty), h, g, f, a. Thus, the strongly connected components are \{e, h, c\}, \{d\}, \{a, f, g, b\}
+\end{itemize}
+
+\subsection*{b.}
+
+For adjacency matrix representation, the time efficiency class of this algorithm is $\Theta(|V|^2)$
+
+For adjacency list representation, the time efficiency class of this algorithm is $\Theta(|V|+|E|)$
+
+\subsection*{c.}
+
+Zero, as there's no strongly connected component can be contracted to a single vertex.
+
 \section{Exercises 4.4 - 11}
+
+\subsection*{a.}
+
+\begin{tabular}{ |l| c| r| }
+\hline
+m&n&\\ \hline
+26&47&\\ \hline
+13&94&94\\\hline
+6&188&\\\hline
+3&376& 376\\\hline
+1&752&752\\\hline
+\end{tabular}
+
+The result is $94+ 376+752 = 1222$
+
+\subsection*{b.}
+
+It does matter. If we multiply n by m, the number of basic operations is $\lfloor log_2n\rfloor$. If we multiply m by n, the number of basic operations is $\lfloor log_2m\rfloor$. 
 
 \section{Exercises 4.4 - 12}
 
+\subsection*{a.}
 
+\begin{center}
+\begin{algorithmic}
+\INPUT
+Two positive integers, n and m
+\OUTPUT
+The product of n and m
+\Function{RussianPeasant}{$n,m$}
+\If {$n=1$}
+\State \Return $m$
+\ElsIf {$n \mod 2 = 0$}
+\State \Return $RussianPeasant(n/2,2m)$
+\Else
+\State \Return $RussianPeasant((n-1)/2,2m) + m$
+\EndIf
+\EndFunction
+\end{algorithmic}
+\end{center}
+
+
+\subsection*{b.}
+
+$\Theta(logn)$, where n is the first factor of the product.
 
 \end{document}
