@@ -38,19 +38,13 @@
 
 \textbf{Basis}: For n = 1, the output of Heap's algorithm is [1], which are all permutations of [1]. Thus the statement is true for n =1. 
 
-\textbf{Inductive step}: Assume HeapPermute(n) generates all permutations of A[1..n] holds for some unspecified value of k. There are k + 1 loops in HeapPermute(k+1). For each loop, the additional number k+1 are added to all the possible positions in the permutations generated from  HeapPermute(k). At last, in total (k+1)! permutations are generated from HeapPermute(k+1). 
+\textbf{Inductive step}: Assume HeapPermute(n) generates all permutations of A[1..n] holds for some unspecified value of k. There are k + 1 loops in HeapPermute(k+1). For each loop, the additional number k+1 is added to all the possible positions in the permutations generated from  HeapPermute(k). At last, in total (k+1)! permutations are generated from HeapPermute(k+1). 
 
 Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all natural numbers n. Q.E.D.
 
 \subsection*{c. }
 
-Let C(n) be the number of $swap$ process.
-
-$C(n) = n(C(n-1)+1) when n >1$
-
-$C(1) = 0$
-
-$C(n) \in \Theta(n!)$
+For a positive integer $n$, there are $n!$ permutations of $A[1..n]$. In other words, the Heap's algorithm generates $n!$ permutations through about $n!$ swap processes. Thus, $C(n) \in \Theta(n!)$.
 
 \section{Exercises 4.3 - 7}
 
