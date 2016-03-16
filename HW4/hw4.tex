@@ -60,7 +60,7 @@ all $2^n$ bit strings of length n, A[0..n]
 \EndIf
 \State $A[n] \leftarrow 0$
 \State $BitStrings(n-1,A)$
-\State $A[n] \leftarrow 0$
+\State $A[n] \leftarrow 1$
 \State $BitStrings(n-1,A)$
 \EndFunction
 \end{algorithmic}
@@ -84,8 +84,8 @@ This digraph is not a dag.
 
 \begin{itemize}
 \item Step 1: The order the vertices are popped off the stack: 1f, 2g, 3b, 4a, (now empty), 5d, 6c, (now empty), 7h, 8e
-\item Step 2:\\ \\ \\ \\
-\item Step 3: The order vertices are pushed in the stack: e, h, c, (now empty), d, (now empty), h, g, f, a. Thus, the strongly connected components are \{e, h, c\}, \{d\}, \{a, f, g, b\}
+\item Step 2:\\ \\ \\ \\ \\
+\item Step 3: The order vertices are pushed in the stack: e, h, c, (now empty), d, (now empty), h, g, f, a. Thus, the strongly connected components are \{e, h, c\}, \{a, f, g, b\}. \{d\} is not a strongly connected component as there is only one vertex in the digraph
 \end{itemize}
 
 \subsection*{b.}
