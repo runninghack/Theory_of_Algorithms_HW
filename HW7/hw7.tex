@@ -22,18 +22,293 @@
 
 \section{Exercieses 8.1 - 2}
 
+$F[0] = 0, F[1] = c_1 = 5$
+
+$F[2] = max\{1 + 0, 5\} = 5$
+
+$F[3] = max\{2 + 5, 5\} = 7$
+
+$F[4] = max\{10 + 5, 7\} = 15$
+
+$F[5] = max\{7 + 6, 15\} = 15$
 
 
 \section{Exercieses 8.1 - 4}
 
+$F[0] = 0$
+
+$F[1] = min\{F[1 - 1]\} + 1 = 1$
+
+$F[2] = min[F[2 - 1]] + 1 = 2$
+
+$F[3] = min\{F[3 - 1], F[3 - 3]\} + 1 = 1$
+
+$F[4] = min\{F[4 - 1], F[4 - 3]\} + 1 = 2$
+
+$F[5] = min\{F[5 - 1], F[5 - 3], F[5 - 5]\} + 1 = 1$
+
+$F[6] = min\{F[6 - 1], F[6 - 3], F[6 - 5]\} + 1 = 2$
+
+$F[7] = min\{F[7 - 1], F[7 - 3], F[7 - 5]\} + 1 = 3$
+
+$F[8] = min\{F[8 - 1], F[8 - 3], F[8 - 5]\} + 1 = 2$
+
+$F[9] = min\{F[9 - 1], F[9 - 3], F[9 - 5]\} + 1 = 3$
+
 \section{Exercieses 8.1 - 9}
+
+\begin{center}
+\begin{algorithmic}
+\INPUT
+nonnegative integers $n$ and $k$.
+\OUTPUT
+The value of $C(n,k)$
+\Function{BionomialCoef}{$n,k$}
+\If {$ k = 0 $ or $ k = n$}
+\State \Return {$1$}
+\Else
+\State \Return $BionomialCoef(n-1,k-1) + BionomialCoef(n-1,k)$
+\EndIf
+\EndFunction
+\end{algorithmic}
+\end{center}
+
+Time efficiency: 
+
+$\frac{(k-1)k}{2} + k(n-k) = nk - \frac{1}{2}k^2 - 1/2 \in \theta(nk)$
+
+Space efficiency:
+
+$S(n,k) = \sum_{i=0}^k(i+1) + \sum_{i=k+1}^n(k+1) = \frac{(k+1)(k+2)}{2} +(k+1)(n-1) \in \theta(nk)$
 
 \section{Exercieses 8.2 - 2}
 
+\subsection*{a.}
+
+\begin{center}
+\begin{algorithmic}
+\INPUT
+Arrays $w[1..n]$ and $v[1..n]$. Integer $W$
+\OUTPUT
+A table $T[0..n,0..W]$
+\Function{knapsack}{$w[1..n],v[1..n],W$}
+\For {$i \leftarrow 0$ to $n$}
+\State $T[i,0] \leftarrow 0$
+\EndFor
+\For {$j \leftarrow 1$ to $W$}
+\State $T[0,j] \leftarrow 0$
+\EndFor
+\For {$i \leftarrow 1$ to $n$}
+\For {$j \leftarrow 1$ to $W$}
+\If {$j - w[i] \geq 0$}
+\State $T[i,j] \leftarrow max\{V[i-1,j], v[i]+T[i-1,j-w[i]]\}$
+\Else
+\State $T[i,j] \leftarrow T[i-1,j]$
+\EndIf
+\EndFor
+\EndFor
+\State \Return $T$
+\EndFunction
+\end{algorithmic}
+\end{center}
+
+\subsection*{b.}
+
+\begin{center}
+\begin{algorithmic}
+\INPUT
+Arrays $w[1..n]$ and $v[1..n]$. An integer $W$. A table $T[0..n,0..W]$
+\OUTPUT
+A list $L[1..k]$
+\Function{OpticalSubset}{$w[1..n],v[1..n],W$}
+\State $temp \leftarrow 0$
+\State $j \leftarrow W$
+\For {$i \leftarrow n$ decrease $1$}
+\If {$T[i,j] > T[i-1,j]$}
+\State $k \leftarrow k+1$
+\State $L[k] \leftarrow i$
+\State $j \leftarrow j - w[i]$
+\EndIf
+\EndFor
+\State \Return $L$
+\EndFunction
+\end{algorithmic}
+\end{center}
+
 \section{Exercieses 8.3 - 7}
+
+\subsection*{a.}
+
+Let k be the number of nodes in the left tree, then the right tree must have n - 1 - k nodes. Thus the number of trees is $b(k)b(n-1-k)$. $b(n) = \sum_{k=0}^{n-1}b(k)b(n-1-k)$
+
+\subsection*{b.}
+
+$b(1) = 1$
+
+$b(2) = 2$
+
+$b(3) = 5$
+
+$b(4) = 14$
+
+$b(5) = 42$
+
+\subsection*{c.}
+
+With the help of Stirling's approximation:
+
+\begin{align*}
+b(n) &= \frac{(2n)!}{(n!)^2} \frac{1}{n+1} \\
+&\approx \frac{\sqrt{2\pi 2n }(\frac{2n}{e})^{2n}}{[\sqrt{2\pi n}(\frac{n}{e})^n]^2(n+1)}\\
+&= \frac{\sqrt{4\pi n}(\frac{2n}{e})^{2n}}{2\pi n(\frac{n}{e})^{2n}(n+1)}\\
+&= \frac{2^{2n}}{\sqrt{\pi n}(n+1)}\\
+&\in \theta(4^nn^{-\frac{3}{2}})
+\end{align*}
+
+It will be very expensive for running this algorithm with a large n.
 
 \section{Exercieses 8.4 - 1}
 
+\[
+R^{(0)} = 
+\left[
+\begin{array}{cccc}
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+R^{(1)} = 
+\left[
+\begin{array}{cccc}
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+R^{(2)} = 
+\left[
+\begin{array}{cccc}
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+R^{(3)} = 
+\left[
+\begin{array}{cccc}
+0 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+R^{(4)} = 
+\left[
+\begin{array}{cccc}
+0 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+\end{array}
+\right]
+= T
+\]
+
 \section{Exercieses 8.4 - 7}
+
+\[
+D^{(0)} = 
+\left[
+\begin{array}{ccccc}
+0 & 2 & \infty & 1 & 8 \\
+6 & 0 & 3 & 2 & \infty \\
+\infty & \infty & 0 & 4 & \infty \\
+\infty & \infty & 2 & 0 & 3 \\
+3 & \infty & \infty & \infty & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+D^{(1)} = 
+\left[
+\begin{array}{ccccc}
+0 & 2 & \infty & 1 & 8 \\
+6 & 0 & 3 & 2 & \infty \\
+\infty & \infty & 0 & 4 & \infty \\
+\infty & \infty & 2 & 0 & 3 \\
+3 & \infty & \infty & \infty & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+D^{(2)} = 
+\left[
+\begin{array}{ccccc}
+0 & 2 & 5 & 1 & 8 \\
+6 & 0 & 3 & 2 & 14 \\
+\infty & \infty & 0 & 4 & \infty \\
+\infty & \infty & 2 & 0 & 3 \\
+3 & 5 & 8 & 4 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+D^{(3)} = 
+\left[
+\begin{array}{ccccc}
+0 & 2 & 5 & 1 & 8 \\
+6 & 0 & 3 & 2 & 14 \\
+\infty & \infty & 0 & 4 & \infty \\
+\infty & \infty & 2 & 0 & 3 \\
+3 & 5 & 8 & 4 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+D^{(4)} = 
+\left[
+\begin{array}{ccccc}
+0 & 2 & 3 & 1 & 4 \\
+6 & 0 & 3 & 2 & 5 \\
+\infty & \infty & 0 & 4 & 7 \\
+\infty & \infty & 2 & 0 & 3 \\
+3 & 5 & 6 & 4 & 0 \\
+\end{array}
+\right]
+\]
+
+\[
+D^{(5)} = 
+\left[
+\begin{array}{ccccc}
+0 & 2 & 3 & 1 & 4 \\
+6 & 0 & 3 & 2 & 5 \\
+10 & 12 & 0 & 4 & 7 \\
+6 & 8 & 2 & 0 & 3 \\
+3 & 5 & 6 & 4 & 0 \\
+\end{array}
+\right]
+= D
+\]
 
 \end{document}
