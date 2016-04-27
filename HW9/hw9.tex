@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{indentfirst}
+\usepackage{subcaption}
+\usepackage{tabularx}  % for 'tabularx' environment and 'X' column type
+\usepackage{graphicx}
+\usepackage{arydshln}
+
+\algnewcommand\algorithmicinput{\textbf{//Input:}}
+\algnewcommand\INPUT{\item[\algorithmicinput]}
+\algnewcommand\algorithmicoutput{\textbf{//Output:}}
+\algnewcommand\OUTPUT{\item[\algorithmicoutput]}
+
+\title{Homework 9}
+\author{Lei Zhang}
+
+\begin{document}
+
+\maketitle
+
+\section{Exercises 9.4 - 1}
+
+\subsection*{a.}
+
+\clearpage
+
+\begin{tabular}{c|ccccc}
+  symbol & A & B & C & D & - \\
+  \hline
+  frequency & 0.4 & 0.1 & 0.2 & 0.15 & 0.15 \\
+  codeword & 0 & 100 & 111 & 101 & 110 \\
+\end{tabular}
+
+\subsection*{b.}
+
+According to the codewords above, ABACABAD will be encoded as 0100011101000101.
+
+\subsection*{c.}
+
+According to the codewords above, 100010111001010 will be decoded as BAD\_ADA.
+
+\section{Exercises 9.4 - 9}
+
+\clearpage
+
+\section{Exercises 10.1 - 2}
+
+\subsection*{a.}
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\subsection*{b.}
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\section{Exercises 10.1 - 10}
+
+\subsection*{a.}
+
+\textbf{primal problem:}
+
+maximize $cx$
+
+subject to $Ax \leq b$,  $X \geq 0$
+
+where :
+
+
+\[
+c = [c_1 ... c_n], 
+x = 
+\left[
+  \begin{array}{c}
+    x_1\\
+    .\\
+    .\\
+    .\\
+    x_n
+  \end{array}
+\right], 
+A =
+\left[
+  \begin{array}{ccc}
+    a_{11}&...&a_{1n}\\
+    .& &.\\
+    .& &.\\
+    .& &.\\
+    a_{m1}& ... & a_{mn}
+  \end{array}
+\right],
+b = 
+\left[
+\begin{array}{c}
+  b_1\\
+  .\\
+  .\\
+  .\\
+  b_m
+\end{array}
+\right]
+\]
+
+\textbf{dual problem:}
+
+maximize $b^Tx$
+
+subject to $A^Ty \geq c^T$, $y \geq 0$
+
+where $b, A, c, y, x$ are defined above in \textbf{a}.
+
+\subsection*{b.}
+
+minimize $6y_1 + 2y_2$
+
+subject to :
+
+\[
+y_1+y_2 \geq 1
+\]
+\[
+y_1 - y_2 \geq 4
+\]
+\[
+y_1 - 2y_2 \geq -1
+\]
+\[
+y_1, y_2 \geq 0
+\]
+
+\subsection*{c.}
+
+\textbf{primal problem:}
+
+Standard form:
+
+maximize $x_1 + 4x_2 - x_3$
+
+subject to 
+
+$x_1 + x_2 + x_3 + u = 6$
+
+$x_1 - x_2 - 2x_3 + v= 2$
+
+$x_1,x_2,x_3,u,v \geq 0$
+
+The simplex tableau:
+
+\begin{center}
+  \begin{tabular}{ccccccc}
+    &$x_1$ & $x_2$ & $x_3$ & $u$ & $v$ & \\
+    \cline{2-7}
+    $u$ &1 & 1& 1 & 1 & 0 & 6\\
+    $v$ &1 & -1& -2 & 0 & 1 & 2\\
+    \cdashline{2-7}
+       &  -1 & -4& 1 & 0 & 0 & 0\\
+    \cline{2-7}
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{ccccccc}
+    &$x_1$ & $x_2$ & $x_3$ & $u$ & $v$ & \\
+    \cline{2-7}
+    $u$ &1 & 1& 1 & 1 & 0 & 6\\
+    $v$ &2 & 0& -1 & 1 & 1 & 8\\
+    \cdashline{2-7}
+       &  3 & 0& 5 & 4 & 0 & 24\\
+    \cline{2-7}
+  \end{tabular}
+\end{center}
+
+The optimal solution is $x_1 = 0, x_2=6, x_3 = 0$
+
+
+\textbf{dual problem:}
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+
+The optimal solution is $y_1 = 4, y_2 = 0$
+
+The results of objective functions in the primal aand dual problems are equal. 
+
+\section{Exercises 10.2 - 2}
+
+\clearpage
+
+\section{Exercises 10.3 - 1}
+
+\subsection*{a.}
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\bigbreak
+
+\subsection*{b.}
+
+No augmentation exists. 
+
+In part b, vertices 5 and 8 and linked and only linked to vertice 4, which means only one of them can be matched. As there are already three links, there won't be one more augmentation.
+
+\section{Exercises 10.3 - 4}
+
+\subsection*{a.}
+
+For $V=\{1,2,3,4\}$, when $S=\{1,2,3,4\}$, $|R(S)| = 3$ and $ |S| = 4$, so there's no matching that matches all vertices of the set $V$.
+
+For $V= \{5,6,7\}$, every $|R(S)|$ is greater than $|S|$, so there's a mathing that matches all vertices of the set $V$.
+
+\subsection*{b.}
+
+\begin{center}
+\begin{algorithmic}
+\INPUT
+A bipartite graph $G = <V,U,E>$
+\OUTPUT
+returns yes if there is a matching in  G that matches all vertices in V and returns no otherwise.
+\Function{IsMaximumMatching}{$G$}
+\While {$not Empty(Q)$}
+\State $w \leftarrow Front(Q); Dequeue(Q)$
+\If {$w \in V$}
+\For {every vertex $u$ adjacent to $w$}
+\If {$u$ is free}
+\State $M \leftarrow M \cup (w,u)$
+\State $v \leftarrow w$
+\While {$v$ is labeled}
+\State $u \leftarrow$ vertex indicated by $v$'s label; $M \leftarrow M - (v,u)$
+\State $v \leftarrow$ vertex indicated by $u$'s label; $M \leftarrow M \cup (v,u)$
+\EndWhile
+\State remove all vertex labels
+\State reinitialize $Q$ with all free vertices in $V$
+\State Break 
+\Else
+\If {$w,u \not\in M$ and $u$ is unlabeled}
+\State label $u$ with $w$
+\State $Enqueue(Q,u)$
+\EndIf
+\EndIf
+\EndFor
+\Else
+\State label the mate $v$ of $w$ with $w$
+\State $Enqueue(Q,v)$
+\EndIf
+\EndWhile
+\If {$|M| = |V|$}
+\State \Return yes
+\Else
+\State \Return no
+\EndIf
+\EndFunction
+\end{algorithmic}
+\end{center}
+
+The time efficiency of the algorithm based on Hall's Marriage Theorem is too expensive, so I'd like to to use the algorithm shown above.
+
+\end{document}
